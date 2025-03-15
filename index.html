@@ -3,64 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Update</title>
+    <title>Loading, eat a snicker bar...</title>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@900&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
+            font-family: 'League Spartan', sans-serif;
             background-color: black;
             color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        #loading-screen {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: black;
+            text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 1.5em;
-        }
-
-        #loading-text {
-            margin-bottom: 10px;
-        }
-
-        #rickroll {
-            width: 100vw;
             height: 100vh;
-            display: none;
-            border: none;
+            margin: 0;
+        }
+        #loading-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #progress-bar {
+            width: 300px;
+            height: 20px;
+            background-color: grey;
+            margin-top: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #progress {
+            width: 0%;
+            height: 100%;
+            background-color: lime;
+            transition: width 3s linear;
         }
     </style>
 </head>
 <body>
     <div id="loading-screen">
-        <div id="loading-text">Initializing system update...</div>
-        <div id="dots">.</div>
+        <h1>Wait for this to load...</h1>
+        <div id="progress-bar">
+            <div id="progress"></div>
+        </div>
     </div>
-
-    <iframe id="rickroll" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&loop=1&playlist=dQw4w9WgXcQ" allow="autoplay"></iframe>
-
+    <div id="video-container" style="display: none;">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allowfullscreen></iframe>
+    </div>
     <script>
-        let dots = document.getElementById("dots");
-        let count = 0;
-        setInterval(() => {
-            count = (count + 1) % 4;
-            dots.innerHTML = ".".repeat(count);
-        }, 500);
-
+        let progress = document.getElementById("progress");
+        setTimeout(() => {
+            progress.style.width = "100%";
+        }, 100);
         setTimeout(() => {
             document.getElementById("loading-screen").style.display = "none";
-            document.getElementById("rickroll").style.display = "block";
-        }, 4000);
+            document.getElementById("video-container").style.display = "block";
+        }, 3000);
     </script>
 </body>
 </html>
